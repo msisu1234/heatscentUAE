@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta charset="UTF-8">
+  <title>Heatscent | New Perfumes</title>
+<style>
+  body {
+    font-family: Inter, Arial, sans-serif;
+    padding: 40px;
+  }
+
+  h1 {
+    margin-bottom: 30px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-left: 75px;
+    margin-right: 75px;
+  }
+
+  .card {
+    border: 1px solid #ddd;
+    overflow: hidden;
+    transition: 0.2s;
+    background: white;
+  }
+
+  .card:hover {
+    transform: translateY(-2%) scale(1.02);
+    background: rgb(239, 239, 239);
+    border: 1px solid #000000;
+  }
+
+  .card img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .card-content {
+    padding: 12px;
+  }
+
+  .card-title {
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .card-price {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-top: 7px;
+  }
+
+  .card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+.image-wrapper {
+  position: relative;
+}
+
+.ribbon {
+  position: absolute;
+  top: 12px;
+  right: -5px;
+
+  background: #ff2d00;
+  color: white;
+
+  width: 75px;              
+  height: 28px;
+
+  display: flex;
+  align-items: center; 
+  justify-content: center;   
+
+  font-size: 12px;
+  font-weight: bold;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.title {
+    margin-left: 75px;
+}
+</style>
+</head>
+
+<body>
+<script>
+  fetch(`nav.html?t=${Date.now()}`)
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("navbar").innerHTML = data;
+    })
+    .catch(err => console.error("Naigation bar failed to load", err));
+</script>
+
+<div id="navbar"></div>
+<h1 class="title">New Additions</h1>
+<div id="catalogue" class="grid"></div>
+
+<script>
+  const FILTER = "new"; 
+  // "all", "men", "women", "new"
+
+  async function loadCatalogue() {
+    try {
+      const res = await fetch(`catalogue.json?t=${Date.now()}`);
+      const catalogue = await res.json();
+
+      const container = document.getElementById("catalogue");
+
+      for (const file of catalogue.shown) {
+        const resItem = await fetch(`perfumes/${file}?t=${Date.now()}`);
+        const data = await resItem.json();
+        const category = data.sort?.sort;
+        const isNew = data.sort?.new;
+
+
+        if (FILTER === "men" && category !== "men") continue;
+        if (FILTER === "women" && category !== "women") continue;
+        if (FILTER === "new" && isNew !== "y") continue;
+
+        const div = document.createElement("div");
+        div.className = "card";
+
+        const tagHTML = data.tag ? `<div class="ribbon">${data.tag}</div>` : "";
+
+        div.innerHTML = `
+  <a href="product.html?file=${file}">
+    <div class="image-wrapper">
+      ${tagHTML}
+    <img src="images/${data.thumbnail}?t=${Date.now()}" alt="${data.name}">
+    </div>
+    <div class="card-content">
+      <div class="card-title">${data.name}</div>
+      <div class="card-price">AED ${data.prices["50ml"]}</div>
+    </div>
+  </a>
+`;
+
+        container.appendChild(div);
+      }
+
+    } catch (err) {
+      console.error("catalogue failed:", err);
+    }
+  }
+
+  loadCatalogue();
+</script>
+
+</body>
+</html>

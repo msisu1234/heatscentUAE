@@ -1,0 +1,22 @@
+{
+  "name": "The Bansal Special",
+  "ingredients": "natan",
+  "smell": "natan",
+  "images": [
+    "images/bansal.png",
+    "images/thumbnail-c.png"
+  ],
+  "prices": {
+    "25ml": 100.0,
+    "50ml": 100.0,
+    "75ml": 100.0,
+    "100ml": 100.0
+  },
+  "moreInfo": "natan",
+  "tag": "NEW!",
+  "thumbnail": "aarav.png",
+  "sort": {
+    "sort": "men",
+    "new": "y"
+  }
+}

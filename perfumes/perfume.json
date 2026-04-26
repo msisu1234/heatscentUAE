@@ -1,0 +1,22 @@
+{
+  "name": "Dior Sauvage",
+  "ingredients": "Oud, Rose, Amber, Musk",
+  "smell": "Rich, woody, slightly sweet with a deep oriental tone",
+  "images": [
+    "images/image1.png",
+    "images/image2.png"
+  ],
+  "prices": {
+    "25ml": 80,
+    "50ml": 120,
+    "75ml": 160,
+    "100ml": 200
+  },
+  "thumbnail": "dior.png",
+  "tag": "SALE!",
+  "bookMessege": "Hello! I am interested in buying [ENTER VOLUME] of the Dior Sauvage",
+  "sort": {
+    "sort": "men",
+    "new": "y"
+  }
+}

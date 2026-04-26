@@ -1,0 +1,22 @@
+{
+  "name": "Prada Paradox",
+  "ingredients": "paradoxes",
+  "smell": "prada",
+  "images": [
+    "images/image1.png",
+    "images/image2.png"
+  ],
+  "prices": {
+    "25ml": 20.0,
+    "50ml": 30.0,
+    "75ml": 390.0,
+    "100ml": 49.0
+  },
+  "moreInfo": "tnan",
+  "thumbnail": "paradox.png",
+  "bookMessege": "Hello! I am interested in buying [ENTER VOLUME] of the Paradox",
+  "sort": {
+    "sort": "women",
+    "new": "y"
+  }
+}

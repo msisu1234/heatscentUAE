@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Navbar</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding-top: 85px;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;  
+      height: 80px;
+      background-color: rgb(237, 237, 237);
+      border-bottom: 0.5px solid rgb(90, 12, 52);
+      z-index: 1000;
+      box-sizing: border-box;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .nav-left .logo {
+      height: 40px;
+      cursor: pointer;
+      margin-top: 7;
+      display: block;
+    }
+
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 40px;
+      transition: 0.5s;
+    }
+
+    .nav-center a {
+      text-decoration: none;
+      color: black;
+      font-size: 16px;
+      font-family: Arial, sans-serif;
+      letter-spacing: 2px;
+      transition: 0.5s;
+    }
+
+    .nav-center a:hover {
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-thickness: 1px;
+      transform: scale(1.2)
+    }
+
+    .mm {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: 1s;
+      width: 30px;
+      height: 30px;
+    }
+
+    .jsc {
+      position: relative;
+      display: inline-block;
+      position: absolute;
+      width: 30px;
+      height: 30px;
+    }
+
+    .jsc:hover .mm {
+      opacity: 1;
+      transform: scale(20) translate(20px, 13px) rotate(1090deg);
+      transition: 0.3s;
+    }
+
+    /*.contact {
+
+    }
+    */
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html">
+        <img src="nav-logo.png" alt="Logo" class="logo">
+        <div class="jsc">
+            <img src="images/mortaza.png" alt="MORTAZA" class="mm">
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-center">
+      <a href="index.html">Home</a>
+      <a href="new.html">New</a>
+      <a href="men.html">Men</a>
+      <a href="women.html">Women</a>
+      <a href="contact.html" class="contact">About</a>
+    </div>
+  </nav>
+</body>
+</html>

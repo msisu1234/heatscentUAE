@@ -1,0 +1,23 @@
+{
+  "name": "Afnon 9PM",
+  "ingredients": "jkfalfj",
+  "smell": "afjklasfjlks",
+  "images": [
+    "images/image1.png",
+    "images/image2.png"
+  ],
+  "prices": {
+    "25ml": 100.0,
+    "50ml": 300.0,
+    "75ml": 400.0,
+    "100ml": 500.0
+  },
+  "moreInfo": "aklfjalsf",
+  "thumbnail": "afnon9.png",
+  "tag": "SALE!",
+  "bookMessege": "Hello! I am interested in buying the Afnon 9PM fragrance in the size [ENTER VOLUME]",
+  "sort": {
+    "sort": "men",
+    "new": "y"
+  }
+}

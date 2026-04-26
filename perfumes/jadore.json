@@ -1,0 +1,23 @@
+{
+  "name": "Dior J'adore",
+  "ingredients": "flowers i think",
+  "smell": "idk",
+  "images": [
+    "images/loay.jpeg",
+    "images/loay.jpeg"
+  ],
+  "prices": {
+    "25ml": 100.0,
+    "50ml": 20000.0,
+    "75ml": 100.0,
+    "100ml": 1000.0
+  },
+  "moreInfo": "idk",
+  "thumbnail": "jadore.png",
+  "tag": "HOT!",
+  "bookMessege": "Hello! I am interested in buying the hot sexy cum fragrance in the size [ENTER VOLUME]",
+  "sort": {
+    "sort": "women",
+    "new": "y"
+  }
+}

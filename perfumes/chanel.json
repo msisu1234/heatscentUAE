@@ -1,0 +1,23 @@
+{
+  "name": "Chanel",
+  "ingredients": "doo",
+  "smell": "doo",
+  "images": [
+    "images/c-banner.png",
+    "image/image2.png"
+  ],
+  "prices": {
+    "25ml": 3.0,
+    "50ml": 3.0,
+    "75ml": 3.0,
+    "100ml": 3.0
+  },
+  "moreInfo": "ba",
+  "thumbnail": "chanel.png",
+  "tag": "SALE!",
+  "bookMessege": "Hello! I am interested in buying [ENTER VOLUME] of Chanel",
+  "sort": {
+    "sort": "women",
+    "new": "y"
+  }
+}

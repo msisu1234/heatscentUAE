@@ -1,0 +1,23 @@
+{
+  "name": "Eau De Parfum",
+  "ingredients": "floral powder",
+  "smell": "nathans hair",
+  "images": [
+    "images/image1.png",
+    "images/image2.png"
+  ],
+  "prices": {
+    "25ml": 100.0,
+    "50ml": 200.0,
+    "75ml": 300.0,
+    "100ml": 400.0
+  },
+  "moreInfo": "more informo",
+  "thumbnail": "testcreate.png",
+  "tag": "NEW!",
+  "bookMessege": "Hello! I am in interested in buying the Eau De Parfumin [ENTER VOLUME]",
+  "sort": {
+    "sort": "men",
+    "new": "y"
+  }
+}
