@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta charset="UTF-8">
+  <title>Heatscent | About Us</title>
+
+  <style>
+    body {
+      font-family: Inter, Arial, sans-serif;
+      padding: 0;
+      margin: 0;
+    }
+
+    .title {
+      margin-left: 75px;
+      margin-top: 40px;
+      margin-bottom: 25px;
+      font-size: 32px;
+    }
+
+    .about {
+      margin-left: 75px;
+      margin-right: 75px;
+      margin-bottom: 60px;
+      max-width: 900px;
+    }
+
+    .about-text {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .contact {
+    margin-left: 75px;
+    margin-right: 75px;
+    margin-bottom: 80px;
+    max-width: 900px;
+    }
+
+    .contact-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    }
+
+    .contact-text {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 20px;
+    }
+
+    .contact-buttons {
+    display: flex;
+    gap: 15px;
+    }
+
+    .contact-btn {
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 18px;
+    border: 1px solid #000;
+    color: black;
+    transition: 0.2s;
+    }
+
+    .contact-btn:hover {
+    background: black;
+    color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <script>
+    fetch(`nav.html?t=${Date.now()}`)
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      })
+      .catch(err => console.error("Navigation bar failed to load", err));
+  </script>
+
+  <div id="navbar"></div>
+
+  <h1 class="title">About Us</h1>
+
+  <div class="about">
+    <p class="about-text">
+      At Heatscent, we focus on creating a curated fragrance experience that feels refined, personal, and easy to explore. Every scent in our collection is selected to deliver character, quality, and a lasting impression without unnecessary complexity. We believe fragrance should feel personal. It should reflect your style, your mood, and the way you want to be remembered. Instead of overwhelming choices, our goal is to offer a collection that feels intentional and distinctive. Heatscent was built around the idea that finding the right fragrance should feel effortless. Whether you're discovering your signature scent or expanding your collection, we want the experience to feel as refined as the fragrance itself.
+    </p>
+  </div>
+  <div class="contact">
+  <h2 class="contact-title">Contact Us</h2>
+
+  <p class="contact-text">
+    Any questions or issues with the webiste? Feel free to reach out to us through our socials.
+  </p>
+
+  <div class="contact-buttons">
+    <a href="https://instagram.com/heatscentUAE" target="_blank" class="contact-btn">Instagram</a>
+    <a href="https://wa.me/971XXXXXXXXX" target="_blank" class="contact-btn">WhatsApp</a>
+        <a href="https://instagram.com/msisu_123" target="_blank" class="contact-btn">Website Developer</a>
+
+  </div>
+</div>
+</body>
+</html>

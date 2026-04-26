@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <title>Heatscent | Perfume</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    #bookOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 0;
+      box-shadow: 10px 5px 5px black;
+    }
+
+    #bookOverlay.active {
+      display: flex;
+    }
+
+    .book-modal {
+      background: rgb(120,120,120);
+      width: 800px;
+      max-width: 90%;
+      padding: 20px;
+      border: 2px solid black;
+      position: relative;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      z-index: 20
+    }
+
+    .book-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .book-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    #bookMessage {
+      width: 100%;
+      height: 120px;
+      padding: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      resize: none;
+      margin-bottom: 15px;
+    }
+
+    .book-action {
+      width: 100%;
+      height: 45px;
+      background: #3a3a3a;
+      color: white;
+      border: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .book-action:hover {
+      background: black;
+    }
+
+    .button-div {
+      padding: 5px
+    }
+
+    .background {
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<div class="container">
+
+  <div class="top">
+    <div class="hero">
+      <img id="heroImg" src="" alt="Product Image">
+      <div class="hero-overlay"></div>
+      <div class="hero-name">
+        <h1 id="name">failed to load image</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+
+    <div class="bottom-left">
+
+      <div class="size-row">
+        <strong>Vial Size:</strong>
+        <select id="sizeSelect"></select>
+      </div>
+
+      <div class="price">
+        <span class="price-currency">AED</span>
+        <span id="priceValue">0</span>
+      </div>
+
+      <button class="book-btn" onclick="openBook()">Book a Test Spray</button>
+
+    </div>
+
+    <div class="info-panel">
+
+      <div class="info-block">
+        <strong>Ingredients</strong>
+        <p id="ingredients">failed to fetch</p>
+      </div>
+
+      <div class="info-block">
+        <strong>Smell</strong>
+        <p id="smell">failed to fetch</p>
+      </div>
+
+      <div class="info-block">
+        <strong>More Info</strong>
+        <p id="moreInfo">failed to fetch</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+</div>
+<div id="bookOverlay" onclick="closeBook()">
+  <div class="book-modal" onclick="event.stopPropagation()">
+
+    <p class="book-title">Just one step away</p>
+
+    <button class="book-close" onclick="closeBook()">&#10005;</button>
+
+    <textarea id="bookMessage"></textarea>
+
+    <button class="book-action" onclick="copyAndOpen()">Book on Instagram</button>
+    <div class="button-div"></div>
+    <button class="book-action" onclick="openWhatsApp()">Book on WhatsApp</button>
+  </div>
+</div>
+
+<script>
+fetch("nav.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+
+/* PRODUCT LOGIC */
+const params = new URLSearchParams(window.location.search);
+const file = params.get("file");
+
+let currentData = null;
+
+fetch(`perfumes/${file}?t=${Date.now()}`)
+
+  .then(res => res.json())
+  .then(data => {
+
+    currentData = data;
+
+    document.getElementById("name").textContent = data.name;
+    document.getElementById("ingredients").textContent = data.ingredients;
+    document.getElementById("smell").textContent = data.smell;
+
+    if (data.moreInfo) {
+      document.getElementById("moreInfo").textContent = data.moreInfo;
+    }
+
+    if (data.images && data.images.length > 0) {
+      document.getElementById("heroImg").src = data.images[0];
+    }
+
+    const select = document.getElementById("sizeSelect");
+
+    Object.keys(data.prices).forEach(size => {
+      const opt = document.createElement("option");
+      opt.value = data.prices[size];
+      opt.textContent = size;
+      select.appendChild(opt);
+    });
+
+    document.getElementById("priceValue").textContent = select.value;
+
+    select.addEventListener("change", () => {
+      document.getElementById("priceValue").textContent = select.value;
+    });
+
+  });
+
+function openBook() {
+  document.getElementById("bookOverlay").classList.add("active");
+
+  if (currentData && currentData.bookMessege) {
+
+    const size = document.getElementById("sizeSelect").selectedOptions[0].textContent;
+
+    let message = currentData.bookMessege;
+
+    message = message.replace("[ENTER VOLUME]", size);
+
+    document.getElementById("bookMessage").value = message;
+  }
+}
+
+function closeBook() {
+  document.getElementById("bookOverlay").classList.remove("active");
+}
+
+function copyAndOpen() {
+  const text = document.getElementById("bookMessage").value;
+
+  navigator.clipboard.writeText(text);
+
+  const url = "https://ig.me/m/heatscentuae"; 
+  window.open(url, "popup", "width=600,height=700");
+    celebrate();
+
+}
+
+function openWhatsApp() {
+  const whatsappMsg = document.getElementById("bookMessage").value;
+  const phoneNumber = ""; // No +, dashes, or spaces
+  const encodedMessage = encodeURIComponent(whatsappMsg);
+
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+  window.open(whatsappUrl);
+  celebrate();
+}
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@hiseb/confetti@2.1.0/dist/confetti.min.js"></script>
+<script>
+
+  function celebrate() {
+
+    confetti(
+      { position: { x: event.clientX, y: event.clientY }, 
+        count: 500,
+        velocity: 200,
+        size: 1		// Initial particle velocity
+
+      }
+      );
+
+  }
+</script>
+
+
+</body>
+</html>
